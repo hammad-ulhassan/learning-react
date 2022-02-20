@@ -18,33 +18,57 @@ class App extends Component{
       {name: 'Hammad', age: 28},
       {name: 'Hassan', age: 25},
       {name: 'Murtaza', age: 22},
-    ]
+    ],
+    otherState:'some other value'
   }
 
-  switchNameHandler = () =>{
+  switchNameHandler = (newName) =>{
     // console.log('Was clicked!');
-    // this.state.persons[0].name = "Shahid" //Dont do this
+    // this.state.persons[0].name = "Shahid" //Dont do this //warning do not mutate state directly. dom wont re-render
     this.setState({
       persons: [
-        {name: 'Agha Hammad', age: 28},
+        {name: newName, age: 28},
         {name: 'Hassan', age: 25},
         {name: 'Murtaza', age: 22},
       ]
     })
   }
 
+  nameChangeHandler=(event)=>{
+    this.setState({
+      persons:[
+        {name: 'Lol', age:41},
+        {name: event.target.value, age: 32},
+        {name: 'Khizer', age:54}
+      ]
+    })
+  }
+
 
   render(){
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1x solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    }
     return (
       <div className="App">
         <h1>Hi, Im Hammad Hassan</h1>
         <p>Im learing React</p>
-        <button onClick={this.switchNameHandler}>Switch Name</button>
+        <button
+          style={style}
+          onClick={()=>this.switchNameHandler('Agha Hammad')}>Switch Name</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My Hobbies: Racing</Person>
+        <Person 
+          name={this.state.persons[1].name} 
+          age={this.state.persons[1].age}
+          click={this.switchNameHandler.bind(this, 'Hassan Murtaza')}
+          changed={this.nameChangeHandler}>
+            My Hobbies: Racing
+        </Person>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
-        <PersonByClass name="Hammad" age="46">Mera naam Joker</PersonByClass>
-        <PersonByClass name="Hammad" age="46">Kashi chchoo Mantar</PersonByClass>
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, `Hi I am Hammad Hssan`));
