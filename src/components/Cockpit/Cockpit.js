@@ -6,8 +6,19 @@ const Cockpit = (props) => {
         console.log(`[COCKPIT JS] useEffect`);
         setTimeout(()=>{
             alert(`save data to cloud! `)
-        }, 1000)
-    }, [props.persons])
+        }, 1000);
+        //cleanup
+        return()=>{
+            console.log(`COCKPIT JS cleanup`)
+        }
+    }, []);
+
+    useEffect(()=>{
+        console.log('[COCKPIT JS 2nd useEffect]');
+        return ()=>{
+            console.log('[COCKPIT JS 2nd USE EFFECT CLEANUP]');
+        }
+    })
 
     const style = {
         backgroundColor: 'white',
@@ -27,4 +38,7 @@ const Cockpit = (props) => {
     );
 }
 
-export default Cockpit;
+export default React.memo(Cockpit); 
+/**
+ * only re render when input changes
+ */

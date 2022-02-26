@@ -9,11 +9,19 @@ export default class Persons extends Component {
     // }
 
     shouldComponentUpdate(nextProps, nextState){
-        console.log(`PERSONS JS shouldComponentUpdate`)
-        return true;
+        console.log(`PERSONS JS shouldComponentUpdate`);
+        if(nextProps.persons !== this.props.persons){
+            //if persons prop is changed, then render
+            return true;
+        }
+        //if persons prop is unchanged, then no need to render
+        return false;
     }
 
-
+    componentWillUnmount(){
+        //right before this component is removed
+        console.log(`[PERSONS JS] componentWillUnmount`)
+    }
     
     render() {
         console.log(`PersonsJS rendering...`);
