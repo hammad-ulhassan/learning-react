@@ -60,6 +60,15 @@ class App extends Component {
     console.log(`APPJS componentDidMount`);
   }
 
+  shouldComponentUpdate(nextProps, nextState){
+    console.log(`APPJS shouldComponentUpdate`);
+    return true;//default
+  }
+
+  componentDidUpdate(){
+    console.log(`APPJS componentDidUpdate`)
+  }
+
   render() {
     console.log(`Appjs render`)
     let persons = null;
@@ -76,6 +85,7 @@ class App extends Component {
         <Cockpit
         title={this.props.appTitle}
         clicked={this.togglePersonHandler}
+        persons = {this.state.persons}
         />
         {persons}
       </div>
