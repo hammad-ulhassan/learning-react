@@ -3,6 +3,9 @@ import logo from '../logo.svg';
 import './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
+import withSmallClass from '../hoc/withsmallClass';
+import Aux from '../hoc/Aux';
 
 class App extends Component {
 
@@ -18,7 +21,7 @@ class App extends Component {
       otherState: 'some other value',
       showPersons: false,
       showCockpit: true
-    }
+    };
   }
 
   static getDerivedStateFromProps(props, state){
@@ -81,19 +84,20 @@ class App extends Component {
               changed={this.nameChangeHandler}/>
       );
     }
+    //trying HOC with classes
     return (
-      <div className="App">
+      <Aux>
         <button onClick={()=>{this.setState({showCockpit: false})}}>Remove Cockpit</button>
         {this.state.showCockpit?
         <Cockpit
           title={this.props.appTitle}
           clicked={this.togglePersonHandler}
-          persons = {this.state.persons}
+          personsLength = {this.state.persons.length} 
         />:null}
         {persons}
-      </div>
+      </Aux>
     );
   }
 }
 
-export default App;
+export default withSmallClass(App, 'App');

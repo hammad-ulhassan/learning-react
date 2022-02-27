@@ -1,22 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
+// import { PureComponent } from 'react/cjs/react.production.min';
 import Person from './Person/Person'
 
 
-export default class Persons extends Component {
+export default class Persons extends PureComponent {
     // static getDerivedStateFromProps(props, state){
     //     console.log(`PERSONS JS getDerivedStateFromProps`)
     //     return state;
     // }
 
-    shouldComponentUpdate(nextProps, nextState){
-        console.log(`PERSONS JS shouldComponentUpdate`);
-        if(nextProps.persons !== this.props.persons){
-            //if persons prop is changed, then render
-            return true;
-        }
-        //if persons prop is unchanged, then no need to render
-        return false;
-    }
+    // shouldComponentUpdate(nextProps, nextState){
+    //     console.log(`PERSONS JS shouldComponentUpdate`);
+    //     if(nextProps.persons !== this.props.persons
+    //         || nextProps.changed !== this.props.changed
+    //             || nextProps.clicked !== this.props.click){
+    //         //if persons prop is changed, then render
+    //         return true;
+    //     }
+    //     //if persons prop is unchanged, then no need to render
+    //     return false;
+    // }
 
     componentWillUnmount(){
         //right before this component is removed

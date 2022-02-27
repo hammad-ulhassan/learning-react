@@ -31,6 +31,7 @@ const Cockpit = (props) => {
         <div>
             <h1>Hi, Im {props.title}</h1>
             <p>Im learing React</p>
+            <p>{props.personsLength}</p>
             <button
                 style={style}
                 onClick={props.clicked}>Toggle Persons</button>
@@ -38,7 +39,4 @@ const Cockpit = (props) => {
     );
 }
 
-export default React.memo(Cockpit); 
-/**
- * only re render when input changes
- */
+export default React.memo(Cockpit);
