@@ -1,6 +1,7 @@
 import React, { Component, PureComponent } from 'react';
 // import { PureComponent } from 'react/cjs/react.production.min';
-import Person from './Person/Person'
+import Person from './Person/Person';
+
 
 
 export default class Persons extends PureComponent {
