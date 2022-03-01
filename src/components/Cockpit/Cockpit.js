@@ -1,13 +1,19 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 
 const Cockpit = (props) => {
 
+    const toggleBtnRef = useRef(null);
+    // toggleBtnRef.current.click();
+
+
     useEffect(()=>{
+        //after render cycle.
         console.log(`[COCKPIT JS] useEffect`);
-        setTimeout(()=>{
-            alert(`save data to cloud! `)
-        }, 1000);
+        // setTimeout(()=>{
+        //     alert(`save data to cloud! `)
+        // }, 1000);
         //cleanup
+        toggleBtnRef.current.click();
         return()=>{
             console.log(`COCKPIT JS cleanup`)
         }
@@ -33,8 +39,10 @@ const Cockpit = (props) => {
             <p>Im learing React</p>
             <p>{props.personsLength}</p>
             <button
+            ref={toggleBtnRef}
                 style={style}
                 onClick={props.clicked}>Toggle Persons</button>
+            <button onClick={props.login} style={style}>Login</button>
         </div>
     );
 }

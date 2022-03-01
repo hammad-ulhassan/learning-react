@@ -29,12 +29,15 @@ export default class Persons extends PureComponent {
     render() {
         console.log(`PersonsJS rendering...`);
         return this.props.persons.map((person, personIndex) => {
-            return (<Person
+            return (
+            <Person
                 name={person.name}
                 age={person.age}
                 click={this.props.clicked.bind(this, personIndex)}
                 key={person.id}
                 changed={(e) => this.props.changed(e, person.id)}
+                isAuth={this.props.isAuthenticated}
+
             />);
         });
     };

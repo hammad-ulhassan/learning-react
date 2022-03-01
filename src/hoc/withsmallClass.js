@@ -3,7 +3,7 @@ import React from 'react';
 const withSmallClass = (WrappedComponent, className)=>{
     return props => (
         <div className={className}>
-            <WrappedComponent/>
+            <WrappedComponent {...props}/>
         </div>
     );
 }

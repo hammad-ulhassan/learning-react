@@ -20,7 +20,9 @@ class App extends Component {
       ],
       otherState: 'some other value',
       showPersons: false,
-      showCockpit: true
+      showCockpit: true,
+      changeCounter: 0,
+      authenticated: false
     };
   }
 
@@ -46,7 +48,14 @@ class App extends Component {
 
     const persons = [...this.state.persons];
     persons[personIndex]=person;
-    this.setState({persons: persons})
+    // this.setState({persons: persons, changeCounter: this.state.changeCounter+1})
+    /**the above approach can give us any state because setState is async so we use callback for this*/
+    this.setState((prevState, props)=>{
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter+1,
+      }
+    })
   }
 
   togglePersonHandler = (e) => {
@@ -73,6 +82,10 @@ class App extends Component {
     console.log(`APPJS componentDidUpdate`)
   }
 
+  loginHandler=()=>{
+    this.setState({authenticated:true})
+  }
+
   render() {
     console.log(`Appjs render`)
     let persons = null;
@@ -81,7 +94,9 @@ class App extends Component {
               <Persons
               persons={this.state.persons}
               clicked={this.deletePersonHandler}
-              changed={this.nameChangeHandler}/>
+              changed={this.nameChangeHandler}
+              isAuthenticated={this.state.authenticated}
+              />
       );
     }
     //trying HOC with classes
@@ -92,7 +107,8 @@ class App extends Component {
         <Cockpit
           title={this.props.appTitle}
           clicked={this.togglePersonHandler}
-          personsLength = {this.state.persons.length} 
+          personsLength = {this.state.persons.length}
+          login={this.loginHandler}
         />:null}
         {persons}
       </Aux>
